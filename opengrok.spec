@@ -65,7 +65,7 @@ histories like SCCS, RCS, CVS, Subversion and Mercurial.
 
 %package	javadoc
 Summary:	Javadoc for %{name}
-Group:		Documentation
+Group:		Books/Other
 Requires:	jpackage-utils
 
 %description	javadoc
