@@ -1,11 +1,7 @@
-# Webapp is disabled, since Fedora does not have the Java Webapp guidelines
-# finished yet: http://fedoraproject.org/wiki/PackagingDrafts/JavaWebApps
-%bcond_with webapp
-
 Summary:	Source browser and indexer
 Name:		opengrok
 Version:	0.8
-Release:	%mkrel 0.0.20090712hg.1
+Release:	%mkrel 0.0.20090712hg.2
 Group:		Development/Java
 License:	CDDL
 URL:		http://www.opensolaris.org/os/project/opengrok/
@@ -72,7 +68,6 @@ Requires:	jpackage-utils
 %{summary}.
 
 
-%if %with webapp
 %package	tomcat5
 Summary:	Source browser web application
 Group:		System/Servers
@@ -80,7 +75,6 @@ Requires:	%{name} tomcat5
 
 %description	tomcat5
 OpenGrok web application
-%endif
 
 
 %prep
@@ -108,12 +102,8 @@ sed '
 sed 's,/opengrok/configuration.xml,%{_sysconfdir}/%{name}/configuration.xml,' \
         -i conf/web.xml
 
-# README.Fedora
-%if %with webapp
-cp %{SOURCE3} README.Fedora
-%else
-cp %{SOURCE4} README.Fedora
-%endif
+# README.webapp
+cp %{SOURCE3} README.webapp
 
 %build
 pushd jrcs
@@ -146,16 +136,14 @@ CLASSPATH=$(build-classpath junit4) %{ant} test
 popd
 #CLASSPATH=$(build-classpath jflex junit4) %{ant} test
 
-
 %install
 rm -rf %{buildroot}
 
 # directories
 
-%if %with webapp
 %define webappdir %{_localstatedir}/lib/tomcat5/webapps/source
+install -d %{buildroot}%{webappdir}
 install -d %{buildroot}%{webappdir}/WEB-INF/lib
-%endif
 
 install -d %{buildroot}%{_javadir}
 install -d %{buildroot}%{_javadocdir}/%{name}
@@ -190,6 +178,7 @@ install -p -m 755 %{SOURCE1} %{buildroot}%{_bindir}
 # man
 install -p -m 644 opengrok.1 %{buildroot}%{_mandir}/man1
 
+
 # javadoc
 cp -pR dist/javadoc/. %{buildroot}%{_javadocdir}/%{name}
 cp -pR jrcs/doc/api/. %{buildroot}%{_javadocdir}/%{name}-jrcs
@@ -197,7 +186,6 @@ cp -pR jrcs/doc/api/. %{buildroot}%{_javadocdir}/%{name}-jrcs
 # Configuration file configuration.xml
 install -p -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/%{name}
 
-%if %with webapp
 # Make love, not war!
 unzip -q dist/source.war -d %{buildroot}%{webappdir}
 (IFS=:; for file in $(build-classpath                   \
@@ -209,14 +197,15 @@ unzip -q dist/source.war -d %{buildroot}%{webappdir}
 do
         ln -sf $file %{buildroot}%{webappdir}/WEB-INF/lib
 done)
-%endif
+
+sed -i 's/\/etc\/etc\//\/etc\//' %{buildroot}%{webappdir}/WEB-INF/web.xml
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc CHANGES.txt LICENSE.txt README.txt doc/EXAMPLE.txt README.Fedora
+%doc CHANGES.txt LICENSE.txt README.txt doc/EXAMPLE.txt README.webapp
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/configuration.xml
 %{_javadir}/*
@@ -228,11 +217,8 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_javadocdir}/*
 
-%if %with webapp
 %files tomcat5
 %defattr(-,root,root,-)
 %{webappdir}
 %config(noreplace) %{webappdir}/WEB-INF/web.xml
 %config(noreplace) %{webappdir}/index_body.html
-%endif
-
