@@ -1,14 +1,14 @@
 Summary:	Source browser and indexer
 Name:		opengrok
-Version:	0.8
-Release:	%mkrel 0.0.20090712hg.2
+Version:	0.8.1
+Release:	%mkrel 1
 Group:		Development/Java
 License:	CDDL
 URL:		http://www.opensolaris.org/os/project/opengrok/
-#Source0:        http://www.opensolaris.org/os/project/opengrok/files/%{name}-%{version}-src.tar.gz
+Source0:        http://hub.opensolaris.org/bin/download/Project+opengrok/files/opengrok-%{version}-src.tar.gz
 # hg clone -r786 ssh://anon@hg.opensolaris.org/hg/opengrok/trunk opengrok-0.8-src
 # tar czf opengrok-r786-src.tar.gz --exclude .hg opengrok-0.8-src
-Source0:	opengrok-r786-src.tar.gz
+#Source0:	opengrok-r786-src.tar.gz
 Source1:	opengrok
 Source2:	configuration.xml
 Source3:	opengrok-README.Fedora.webapp
@@ -79,11 +79,11 @@ OpenGrok web application
 
 %prep
 
-%setup -q -n %{name}-0.7-src
+%setup -q -n %{name}-%{version}-src
 %{__unzip} -q ext/jrcs.zip
 %patch0 -p1 -b .jrcs-import
 %patch1 -p1 -b .nocplib
-%patch3 -p1 -b .manifest-classpath
+%patch3 -p0 -b .manifest-classpath
 %patch4 -p1 -b .nooverview
 %patch5 -p1 -b .nochangeset
 %patch6 -p1 -b .jflex
