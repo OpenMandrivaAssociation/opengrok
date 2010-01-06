@@ -29,7 +29,7 @@ Requires:	java-cup
 Requires:	jpackage-utils
 Requires:	lucene > 2
 Requires:	lucene-contrib > 2
-Requires:	servlet
+Requires:	servlet5
 Requires:	swing-layout
 Requires:	xml-commons >= 1.3
 Requires:	java-1.5.0-gcj
@@ -49,7 +49,7 @@ BuildRequires:	jpackage-utils
 BuildRequires:	junit4
 BuildRequires:	lucene > 2
 BuildRequires:	lucene-contrib > 2
-BuildRequires:	servlet
+BuildRequires:	servlet5
 BuildRequires:	swing-layout
 BuildRequires:	unzip
 BuildRequires:	xml-commons >= 1.3
