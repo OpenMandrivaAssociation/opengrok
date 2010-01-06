@@ -1,7 +1,7 @@
 Summary:	Source browser and indexer
 Name:		opengrok
 Version:	0.8.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		Development/Java
 License:	CDDL
 URL:		http://www.opensolaris.org/os/project/opengrok/
@@ -31,6 +31,8 @@ Requires:	lucene > 2
 Requires:	lucene-contrib > 2
 Requires:	servlet
 Requires:	swing-layout
+Requires:	xml-commons >= 1.3
+Requires:	java-1.5.0-gcj
 BuildRequires:	ant
 BuildRequires:	ant-junit
 BuildRequires:	ant-nodeps
@@ -50,6 +52,8 @@ BuildRequires:	lucene-contrib > 2
 BuildRequires:	servlet
 BuildRequires:	swing-layout
 BuildRequires:	unzip
+BuildRequires:	xml-commons >= 1.3
+BuildRequires:	java-1.5.0-gcj
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
