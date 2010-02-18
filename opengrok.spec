@@ -1,7 +1,7 @@
 Summary:	Source browser and indexer
 Name:		opengrok
 Version:	0.8.1
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		Development/Java
 License:	CDDL
 URL:		http://www.opensolaris.org/os/project/opengrok/
@@ -71,15 +71,15 @@ Requires:	jpackage-utils
 %description	javadoc
 %{summary}.
 
-
-%package	tomcat5
+%package	tomcat6
 Summary:	Source browser web application
 Group:		System/Servers
-Requires:	%{name} tomcat5
+Requires:	%{name} tomcat6
+Provides:	tomcat5 = %{version}-%{release}
+Obsoletes:	tomcat5
 
-%description	tomcat5
+%description	tomcat6
 OpenGrok web application
-
 
 %prep
 
@@ -145,7 +145,7 @@ rm -rf %{buildroot}
 
 # directories
 
-%define webappdir %{_localstatedir}/lib/tomcat5/webapps/source
+%define webappdir %{_localstatedir}/lib/tomcat6/webapps/source
 install -d %{buildroot}%{webappdir}
 install -d %{buildroot}%{webappdir}/WEB-INF/lib
 
@@ -221,7 +221,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_javadocdir}/*
 
-%files tomcat5
+%files tomcat6
 %defattr(-,root,root,-)
 %{webappdir}
 %config(noreplace) %{webappdir}/WEB-INF/web.xml
