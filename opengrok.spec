@@ -1,7 +1,7 @@
 Summary:	Source browser and indexer
 Name:		opengrok
 Version:	0.8.1
-Release:	%mkrel 3
+Release:	%mkrel 2
 Group:		Development/Java
 License:	CDDL
 URL:		http://www.opensolaris.org/os/project/opengrok/
@@ -38,7 +38,7 @@ BuildRequires:	ant-junit
 BuildRequires:	ant-nodeps
 BuildRequires:	bcel
 BuildRequires:	ctags
-BuildRequires:	docbook2x
+BuildRequires:	docbook2x >= 0.8.8-6
 BuildRequires:	jakarta-oro
 BuildRequires:	javacc
 BuildRequires:	java-cup
@@ -130,7 +130,7 @@ CLASSPATH=$(build-classpath jflex java_cup) %{ant} -v jar javadoc               
 sed '
         s,^<!DOCTYPE.*,<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "docbookx.dtd">,
         s,^<?Pub Inc>,,
-' dist/opengrok.1 |docbook2man -
+' dist/opengrok.1 | db2x_docbook2man -
 
 
 %check
