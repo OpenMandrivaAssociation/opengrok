@@ -1,7 +1,7 @@
 Summary:	Source browser and indexer
 Name:		opengrok
-Version:	0.8.1
-Release:	%mkrel 2
+Version:	0.9
+Release:	%mkrel 1
 Group:		Development/Java
 License:	CDDL
 URL:		http://www.opensolaris.org/os/project/opengrok/
@@ -14,11 +14,10 @@ Source2:	configuration.xml
 Source3:	opengrok-README.Fedora.webapp
 Source4:	opengrok-README.Fedora.nowebapp
 Patch0:		opengrok-0.5-jrcs-import.patch
-Patch1:		opengrok-0.7-nocplib.patch
+Patch1:		opengrok-0.9-nocplib.patch
 Patch3:		opengrok-0.8-manifest-classpath.patch
 Patch4:		opengrok-0.6-nooverview.patch
-Patch5:		opengrok-0.6-nochangeset.patch
-Patch6:		opengrok-0.7-jflex.patch
+Patch5:		opengrok-0.9-jflex.patch
 Requires:	ant
 Requires:	bcel
 Requires:	ctags
@@ -89,12 +88,11 @@ OpenGrok web application
 %patch1 -p1 -b .nocplib
 %patch3 -p0 -b .manifest-classpath
 %patch4 -p1 -b .nooverview
-%patch5 -p1 -b .nochangeset
-%patch6 -p1 -b .jflex
+%patch5 -p1 -b .jflex
 
 # This is not strictly needed, but to nuke prebuilt stuff
 # makes us feel warmer while building
-find -name '*.jar' -o -name '*.class' -o -name '*.war' -exec rm -f '{}' \;
+find -name '*.jar' -o -name '*.class' -o -name '*.war' -delete
 
 # jrcs' javacc directory
 sed '
@@ -103,8 +101,8 @@ sed '
 ' -i jrcs/build.xml
 
 # Default war configuration
-sed 's,/opengrok/configuration.xml,%{_sysconfdir}/%{name}/configuration.xml,' \
-        -i conf/web.xml
+sed 's,/var/opengrok/etc/configuration.xml,%{_sysconfdir}/%{name}/configuration.xml,' \
+        -i web/WEB-INF/web.xml
 
 # README.webapp
 cp %{SOURCE3} README.webapp
