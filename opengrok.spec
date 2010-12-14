@@ -1,7 +1,7 @@
 Summary:	Source browser and indexer
 Name:		opengrok
 Version:	0.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		Development/Java
 License:	CDDL
 URL:		http://www.opensolaris.org/os/project/opengrok/
@@ -74,8 +74,8 @@ Requires:	jpackage-utils
 Summary:	Source browser web application
 Group:		System/Servers
 Requires:	%{name} tomcat6
-Provides:	tomcat5 = %{version}-%{release}
-Obsoletes:	tomcat5
+Provides:	opengrok-tomcat5 = %{version}-%{release}
+Obsoletes:	opengrok-tomcat5
 
 %description	tomcat6
 OpenGrok web application
