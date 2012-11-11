@@ -1,0 +1,27 @@
+From 4547e5f7923c0e465e3083d37d42dabd35b01cd8 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Mon, 31 May 2010 10:25:09 +0200
+Subject: [PATCH 1/2] Do not copy libraries
+
+During our build we remove everything from lib,
+so don't attempt to copy it.
+---
+ build.xml |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/build.xml b/build.xml
+index eb857e0..7029a28 100644
+--- a/build.xml
++++ b/build.xml
+@@ -281,7 +281,7 @@ Use is subject to license terms.
+ 	<war destfile="${dist.war}" webxml="web/WEB-INF/web.xml">
+             <fileset dir="web" excludes="META-INF/context.xml"/>
+             <lib dir="${dist.dir}" includes="opengrok.jar"/>
+-            <lib dir="${dist.dir}/lib" includes="*.jar" excludes="servlet-api.jar"/>
++            <!-- <lib dir="${dist.dir}/lib" includes="*.jar" excludes="servlet-api.jar"/> -->
+         </war>
+         <echo message="Generating man page.."/>
+         <java classname="org.opensolaris.opengrok.index.CommandLineOptions" 
+-- 
+1.7.0.1
+

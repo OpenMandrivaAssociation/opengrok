@@ -1,0 +1,14 @@
+Fixes JRCS build.
+Lubomir Kundrak <lkundrak@redhat.com>
+
+diff -urp opengrok-0.5-c4dea0135445.orig/jrcs/src/java/org/apache/commons/jrcs/rcs/Archive.java opengrok-0.5-c4dea0135445/jrcs/src/java/org/apache/commons/jrcs/rcs/Archive.java
+--- opengrok-0.5-c4dea0135445.orig/jrcs/src/java/org/apache/commons/jrcs/rcs/Archive.java	2006-03-21 18:47:56.000000000 +0100
++++ opengrok-0.5-c4dea0135445/jrcs/src/java/org/apache/commons/jrcs/rcs/Archive.java	2008-02-18 21:33:10.000000000 +0100
+@@ -59,6 +59,7 @@ package org.apache.commons.jrcs.rcs;
+ 
+ import java.io.*;
+ import java.util.*;
++import java.text.*;
+ 
+ import org.apache.commons.jrcs.diff.Diff;
+ import org.apache.commons.jrcs.diff.DiffException;

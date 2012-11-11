@@ -1,0 +1,15 @@
+This fixes the warning about missing file during build of javadoc for jrcs.
+
+Lubomir Rintel <lkundrak@v3.sk>
+
+diff -urp opengrok-0.6-src.orig/jrcs/build.xml opengrok-0.6-src/jrcs/build.xml
+--- opengrok-0.6-src.orig/jrcs/build.xml	2008-04-16 00:15:23.000000000 +0200
++++ opengrok-0.6-src/jrcs/build.xml	2008-04-16 00:16:36.000000000 +0200
+@@ -274,7 +274,6 @@
+ 			author="true"
+ 			version="true" 
+ 			private="yes"
+-			overview="${java.dir}/org/apache/commons/jrcs/overview.html"
+ 			windowtitle="${app.name} API"
+ 			doctitle="${app.name}"
+ 			bottom="Copyright 2002 the Apache Software Foundation&lt;br&gt;

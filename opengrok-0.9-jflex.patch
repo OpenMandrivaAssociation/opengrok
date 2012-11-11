@@ -1,0 +1,29 @@
+From c7939e318b842e5eb2f6371f3207972605eb0f87 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Mon, 31 May 2010 10:36:23 +0200
+Subject: [PATCH 2/2] We include jflex differently.
+
+---
+ build.xml |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+diff --git a/build.xml b/build.xml
+index 7029a28..af4c89c 100644
+--- a/build.xml
++++ b/build.xml
+@@ -136,10 +136,12 @@ Use is subject to license terms.
+         <pathelement path="lib/pmd/lib/"/>
+     </path>
+ 
++    <!-- it's called jflex.jar, and we add it to classpath by ourselves
+     <available file="JFlex.jar" type="file" property="JFlex.present">
+         <filepath refid="lib.search.path"/>
+     </available>
+     <fail unless="JFlex.present" message="Please download JFlex (http://jflex.de/) and put JFlex.jar it into ./lib directory (or in ant classpath)."/>
++    -->
+     
+     <taskdef classname="JFlex.anttask.JFlexTask" name="jflex" classpath="lib/JFlex.jar;../lib/JFlex.jar"/>    
+     <target name="jflex">
+-- 
+1.7.0.1
+
