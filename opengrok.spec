@@ -4,7 +4,7 @@ Version:	0.9
 Release:	%mkrel 2
 Group:		Development/Java
 License:	CDDL
-URL:		http://www.opensolaris.org/os/project/opengrok/
+URL:		https://www.opensolaris.org/os/project/opengrok/
 Source0:        http://hub.opensolaris.org/bin/download/Project+opengrok/files/opengrok-%{version}-src.tar.gz
 # hg clone -r786 ssh://anon@hg.opensolaris.org/hg/opengrok/trunk opengrok-0.8-src
 # tar czf opengrok-r786-src.tar.gz --exclude .hg opengrok-0.8-src
