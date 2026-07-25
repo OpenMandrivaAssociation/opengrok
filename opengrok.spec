@@ -1,7 +1,7 @@
 Summary:	Source browser and indexer
 Name:		opengrok
 Version:	0.9
-Release:	%mkrel 2
+Release:	3
 Group:		Development/Java
 License:	CDDL
 URL:		https://www.opensolaris.org/os/project/opengrok/
